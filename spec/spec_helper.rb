@@ -9,10 +9,17 @@ require 'capybara/rspec'
 require 'rspec'
 require 'tilt/erb'
 require 'database_cleaner'
+require 'sinatra/flash'
+require 'factory_girl'
+require_relative './factories/user'
+require_relative './helpers/session'
 
 Capybara.app = BookmarkManager
 
 RSpec.configure do |config|
+
+  config.include FactoryGirl::Syntax::Methods
+
   config.include Capybara::DSL
 
   config.expect_with :rspec do |expectations|
@@ -37,4 +44,5 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
 end

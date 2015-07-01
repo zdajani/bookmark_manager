@@ -1,7 +1,5 @@
-require 'spec_helper'
-
-
 feature 'Viewing links' do
+  
   before(:each) do
     Link.create(url: 'http://www.makersacademy.com',
                 title: 'Makers Academy',

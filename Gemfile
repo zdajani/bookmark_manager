@@ -7,6 +7,8 @@ gem 'dm-postgres-adapter'
 gem 'pry'
 gem 'rake'
 gem 'bcrypt'
+gem 'sinatra-flash'
+
 
 
 group :test do
@@ -14,6 +16,7 @@ group :test do
   gem 'rspec'
   gem 'database_cleaner'
   gem 'byebug'
+  gem 'factory_girl'
 
 
 end

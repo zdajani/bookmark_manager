@@ -8,6 +8,8 @@ DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/bookmark
 require './app/models/link'
 require './app/models/tag'
 require './app/models/user'
+require 'dm-validations'
+
 
 # require each model individually - the path may vary depending on your file structure.
 # DataMapper.auto_upgrade!
