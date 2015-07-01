@@ -3,8 +3,10 @@ require './app/data_mapper_setup.rb'
 require 'pry'
 
 class BookmarkManager < Sinatra::Base
-  set :views, proc { File.join('app/views') }
+  # set :views, proc { File.join('app/views') }
   run! if app_file == $0
+  enable :sessions
+  set :session_secret, 'super secret'
 
   get '/' do
     redirect 'links'
@@ -12,12 +14,10 @@ class BookmarkManager < Sinatra::Base
 
   get '/links' do
     @links = Link.all
-    @tags = Tag.all
     erb :'links/index'
   end
 
   get '/links/new' do
-    byebug
     erb :'links/new'
   end
 
@@ -43,13 +43,15 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/users' do
-  user = User.create(email: params[:email],
-              password: params[:password])
-  redirect to('/links')
+    user = User.create(email: params[:email],
+                password: params[:password])
+    session[:user_id] = user.id
+    redirect to('/')
   end
 
-
-
-
-
+  helpers do
+    def current_user
+      current_user = User.get(session[:user_id])
+    end
+  end
 end

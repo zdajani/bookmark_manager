@@ -1,3 +1,4 @@
+require 'spec_helper'
 feature 'User sign up' do
 
   # Strictly speaking, the tests that check the UI
