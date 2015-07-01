@@ -17,6 +17,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/links/new' do
+    byebug
     erb :'links/new'
   end
 
@@ -36,5 +37,19 @@ class BookmarkManager < Sinatra::Base
     @links = tag ? tag.links : []
     erb :'links/index'
   end
+
+  get '/users/new' do
+    erb :'users/new'
+  end
+
+  post '/users' do
+  user = User.create(email: params[:email],
+              password: params[:password])
+  redirect to('/links')
+  end
+
+
+
+
 
 end
