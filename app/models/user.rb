@@ -1,4 +1,5 @@
 require 'bcrypt'
+require 'pry'
 
 class User
   include DataMapper::Resource

@@ -13,11 +13,6 @@ feature 'User sign up' do
   scenario 'with a password that does not match' do
     user = build(:user, password_confirmation: "wrong")
     expect {sign_up(user)}.not_to change(User, :count)
-  end
-
-  scenario 'with a password that does not match' do
-    user = build(:user, password_confirmation: "wrong")
-    expect {sign_up(user)}.not_to change(User, :count)
     expect(current_path).to eq('/users')
     expect(page).to have_content('Sorry, there were the following problems with the form.')
   end

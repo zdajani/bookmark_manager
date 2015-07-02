@@ -8,6 +8,7 @@ gem 'pry'
 gem 'rake'
 gem 'bcrypt'
 gem 'sinatra-flash'
+gem 'sinatra-partial'
 
 
 
