@@ -68,7 +68,7 @@ class BookmarkManager < Sinatra::Base
 
   post '/sessions' do
 
-    user = User.authenticate(params[:email], params[:password])
+    user = User.authenticate(email: params[:email], password: params[:password])
     if user
       session[:user_id] = user.id
       redirect to('/')
@@ -83,6 +83,10 @@ class BookmarkManager < Sinatra::Base
     # session.clear
     flash[:notice] = 'goodbye!'
     redirect to('/links')
+  end
+
+  get '/password_reset' do
+    erb :'password_reset/password_reset'
   end
 
   helpers do
