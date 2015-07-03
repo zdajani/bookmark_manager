@@ -12,7 +12,7 @@ require 'dm-validations'
 
 
 # require each model individually - the path may vary depending on your file structure.
-# DataMapper.auto_upgrade!
+DataMapper.auto_upgrade!
 
 
 DataMapper.finalize

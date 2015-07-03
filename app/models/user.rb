@@ -6,6 +6,7 @@ class User
 
   attr_reader :password
   attr_accessor :password_confirmation
+  # :password_token
 
   property :id, Serial
   property :email, String, unique: true, message: 'This email is already taken'
@@ -15,6 +16,7 @@ class User
   # and it's not enough for the hash and salt
 
   property :password_digest, Text
+  property :password_token, Text
 
   # when assigned the password, we don't store it directly
   # instead, we generate a password digest, that looks like this:
@@ -37,5 +39,25 @@ class User
       nil
     end
   end
+
+  def self.token_generator(email:)
+    user = first(email: email)
+    user.password_token = ([*('a'..'z'),*('0'..'9')].shuffle[0,15].join)
+    user.save
+  end
+
+  # def token_generator=(create)
+  #   @token = create
+  #   self.password_token =
+  # [*('a'..'z'),*('0'..'9')].shuffle[0,15].join
+  # end
+  # # def token_generator=(token)
+  #   # @token =
+  # # def token=(token)
+  # #   @token = token
+  # #   self.password_token =
+  #   [*('a'..'z'),*('0'..'9')].shuffle[0,15].join
+  # # user.save
+  # end
 
 end
